@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import "../scss/fonts";
+
+@import "../scss/bootstrap/bootstrap-grid",
+        "../scss/bootstrap/bootstrap-reboot",
+        "../scss/bootstrap/bootstrap-utilities",
+        "../scss/bootstrap/nav",
+        "../scss/bootstrap/breadcrumb",
+        "../scss/bootstrap/dropdown",
+        "../scss/bootstrap/modal",
+        "../scss/bootstrap/images",
+        "../scss/bootstrap/transitions";
+        // "../scss/bootstrap/bootstrap.scss";
+
+@import "../scss/reset", 
+        "../scss/variables", 
+        "../scss/body",
+        //components
+        "../scss/components/header", 
+        "../scss/components/footer",
+        // pages
+        "../scss/asset/style-all",
+        "../scss/pages/home";

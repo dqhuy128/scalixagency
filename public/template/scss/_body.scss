@@ -1,0 +1,28 @@
+body {
+	background: #000;
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	font-size: 16px;
+	color: #fff;
+}
+
+button {
+	@include none-line();
+	padding: 0;
+}
+
+.title-global {
+	@include title-global();
+}
+
+.btn-border-pink {
+	@include btn-border-pink();
+}
+
+.btn-bg-pink {
+	@include btn-bg-pink();
+}
+
+.modal-backdrop.show {
+	opacity: 0.9;
+}

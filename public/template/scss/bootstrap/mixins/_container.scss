@@ -1,0 +1,19 @@
+// Container mixins
+
+@mixin make-container($gutter: $container-padding-x) {
+	width: 100%;
+	padding-right: var(--#{$variable-prefix}gutter-x, #{$gutter});
+	padding-left: var(--#{$variable-prefix}gutter-x, #{$gutter});
+	margin-right: auto;
+	margin-left: auto;
+
+	@include media-breakpoint-up(xxl) {
+		padding-right: 55px;
+		padding-left: 55px;
+	}
+
+	@include media-breakpoint-up(2xl) {
+		padding-right: 100px;
+		padding-left: 100px;
+	}
+}

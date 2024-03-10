@@ -2478,6 +2478,8 @@ ul.elementor-icon-list-items.elementor-inline-items .elementor-inline-item {
 		var(--padding-block-start)
 	);
 	padding-block-end: var(--bc-padding-block-end, var(--padding-block-end));
+	// padding-block-start: 0;
+	// padding-block-end: 0;
 }
 
 .e-con-full.e-flex,
@@ -23690,7 +23692,7 @@ html :where(.is-position-sticky) {
 }
 
 .elementor-24 .elementor-element.elementor-element-d718907 img {
-	width: 93%;
+	width: 36%;
 }
 
 .elementor-24 .elementor-element.elementor-element-c04cf65 {

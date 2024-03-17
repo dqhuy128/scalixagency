@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Evo agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+  <link rel="stylesheet" href="libs/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="libs/flatpickr/flatpickr.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="css/style.min.css" />
+</head>
+
+<body style="overflow-x: hidden;">
+  <div id="app">
+    <myheader></myheader>
+    <main style="overflow-x: hidden;">
+      <section class="container mt-5 pt-5" id="section-contact">
+        <div class="bg-secondary rounded-5 py-5 px-3 px-sm-4 px-lg-5 px-xl-0">
+          <div class="row align-items-center py-lg-4">
+            <div class="col-xl-6 col-md-6 offset-xl-1 mb-4 mb-md-0">
+              <div class="d-flex align-items-center">
+                <img src="./svg/contact.svg" width="78" alt="Bell icon">
+                <div class="ps-3 ms-sm-3">
+                  <h2 class="h4 mb-0">
+                    Contact us immediately to receive special offers and
+                    thoughtful support
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+              <!-- Modal with tabs and forms -->
+              <!-- Text input -->
+              <form>
+                <div class="mb-4">
+                  <label for="text-input" class="form-label">Name</label>
+                  <input class="form-control" type="text" id="name" name="name" value="">
+                </div>
+
+                <!-- Email input -->
+                <div class="mb-4">
+                  <label for="email-input" class="form-label">Email</label>
+                  <input class="form-control" type="email" id="email" name="email" value="">
+                </div>
+
+                <!-- Textarea -->
+                <div class="mb-4">
+                  <label for="textarea-input" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                </div>
+
+                <!-- Select -->
+                <!--<div class="mb-4">-->
+                <!--  <label for="subject" class="form-label">Select</label>-->
+                <!--  <select class="form-select" id="subject" name="subject">-->
+                <!--    <option value="option1">Choose option...</option>-->
+                <!--    <option value="option3">Option item 1</option>-->
+                <!--    <option value="option3">Option item 2</option>-->
+                <!--    <option value="option4">Option item 3</option>-->
+                <!--  </select>-->
+                <!--</div>-->
+                <button class="btn btn-primary mt-3" type="submit" id="submitform">
+                  Send
+                </button>
+              </form>
+              <script>
+                $(document).ready(function () {
+                  const telegramBotAPIKey =
+                    "5708245720:AAH2YueWP6nzcVQfg3INc8bBSWdhtmV2oJ8";
+                  const telegramChatID = "-1001811683732";
+
+                  $("#submitform").click(function (event) {
+                    event.preventDefault();
+
+                    const name = $("#name").val();
+                    const email = $("#email").val();
+                    const message = $("#message").val();
+                    const subject = $("#subject").val();
+
+                    const emailRegex = /^\S+@\S+\.\S+$/;
+                    if (!emailRegex.test(email)) {
+                      alert("Please enter a valid email address!");
+                      return;
+                    }
+
+                    const data = {
+                      chat_id: telegramChatID,
+                      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+                      //   text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
+                    };
+
+                    $.ajax({
+                      type: "POST",
+                      url: `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`,
+                      data: data,
+                      dataType: "json",
+                      success: function () {
+                        alert("Message sent!");
+                        $("#name").val("");
+                        $("#email").val("");
+                        $("#message").val("");
+                        // $("#subject").val("");
+                      },
+                      error: function () {
+                        alert("Error sending message!");
+                      },
+                    });
+                  });
+                });
+              </script>
+            </div>
+          </div>
+          <div class="row pt-5">
+            <div class="d-flex flex-row justify-content-around flex-wrap">
+              <!-- Telegram 1 -->
+              <a href="https://t.me/jonyliu" target="_blank" class="text-decoration-none mb-3 d-block flex-grow-1">
+                <div class="btn btn-outline-info d-flex flex-column p-0" type="button" style="
+                    height: 110px;
+                    min-width: 150px;
+                    max-width: 200px;
+                    margin: auto;
+                    border-radius: 12px !important;
+                  ">
+                  <div class="contact-header d-flex flex-row justify-content-start">
+                    <i class="bx bxl-telegram me-2 ms-2 align-middle fs-6"></i>
+                    <span class="" style="font-size: 11px">Telegram</span>
+                    <div class="flex-fill"></div>
+                  </div>
+                  <div class="contact-body my-2">
+                    <span class="fs-6" style="color: #fff">jony Liu </span>
+                    <svg height="23" viewBox="0 2 24 24" width="25" xmlns="http://www.w3.org/2000/svg">
+                      <g id="Layer_2" data-name="Layer 2">
+                        <path
+                          d="m19.36 9v-2.36a2 2 0 0 0 -2-2h-2.31l-1.64-1.64a2 2 0 0 0 -2.82 0l-1.59 1.64h-2.36a2 2 0 0 0 -2 2v2.36l-1.64 1.59a2 2 0 0 0 0 2.82l1.64 1.64v2.31a2 2 0 0 0 2 2h2.36l1.59 1.64a2 2 0 0 0 2.82 0l1.64-1.64h2.31a2 2 0 0 0 2-2v-2.31l1.64-1.64a2 2 0 0 0 0-2.82z"
+                          fill="#2196f3"></path>
+                        <path
+                          d="m11.25 14.5a1 1 0 0 1 -.71-.29l-1.54-1.5a1 1 0 0 1 1.42-1.42l.79.8 2.29-2.3a1 1 0 0 1 1.5 1.42l-3 3a1 1 0 0 1 -.75.29z"
+                          fill="#fff"></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="contact-footer">
+                    <i class="bx bx-chat"></i>
+                  </div>
+                </div>
+              </a>
+              <!-- Telegram 2 -->
+              <a href="https://t.me/Petter_Ly" target="_blank" class="text-decoration-none mb-3 d-block flex-grow-1">
+                <div class="btn btn-outline-info d-flex flex-column p-0" type="button" style="
+                    height: 110px;
+                    min-width: 150px;
+                    max-width: 200px;
+                    margin: auto;
+                    border-radius: 12px !important;
+                  ">
+                  <div class="contact-header d-flex flex-row justify-content-start mb-2">
+                    <i class="bx bxl-telegram me-2 ms-2 align-middle fs-6"></i>
+                    <span class="" style="font-size: 11px">Telegram</span>
+                    <div class="flex-fill"></div>
+                  </div>
+                  <div class="contact-body my-2">
+                    <span class="fs-6" style="color: #fff">Petter Ly</span>
+                    <svg height="23" viewBox="0 2 24 24" width="25" xmlns="http://www.w3.org/2000/svg">
+                      <g id="Layer_2" data-name="Layer 2">
+                        <path
+                          d="m19.36 9v-2.36a2 2 0 0 0 -2-2h-2.31l-1.64-1.64a2 2 0 0 0 -2.82 0l-1.59 1.64h-2.36a2 2 0 0 0 -2 2v2.36l-1.64 1.59a2 2 0 0 0 0 2.82l1.64 1.64v2.31a2 2 0 0 0 2 2h2.36l1.59 1.64a2 2 0 0 0 2.82 0l1.64-1.64h2.31a2 2 0 0 0 2-2v-2.31l1.64-1.64a2 2 0 0 0 0-2.82z"
+                          fill="#2196f3"></path>
+                        <path
+                          d="m11.25 14.5a1 1 0 0 1 -.71-.29l-1.54-1.5a1 1 0 0 1 1.42-1.42l.79.8 2.29-2.3a1 1 0 0 1 1.5 1.42l-3 3a1 1 0 0 1 -.75.29z"
+                          fill="#fff"></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="contact-footer">
+                    <i class="bx bx-chat"></i>
+                  </div>
+                </div>
+              </a>
+              <!-- Telegram -->
+              <a href="https://t.me/Premium_Agency" target="_blank" class="text-decoration-none mb-3" style="">
+                <div class="btn btn-outline-info d-flex flex-column p-0" type="button" style="
+                    height: 110px;
+                    min-width: 150px;
+                    max-width: 200px;
+                    margin: auto;
+                    border-radius: 12px !important;
+                  ">
+                  <div class="contact-header d-flex flex-row justify-content-center w-100 mb-0">
+                    <i class="bx bxl-telegram me-2 ms-2 align-middle fs-1"></i>
+                  </div>
+                  <div class="contact-body my-1" style="">
+                    <span class="" style="font-size: 11px">Telegram channel</span>
+                  </div>
+                </div>
+              </a>
+              <!-- Whatsapp -->
+              <a href="https://api.whatsapp.com/send/?phone=84985786542&amp;text&amp;type=phone_number&amp;app_absent=0"
+                target="_blank" class="text-decoration-none mb-3" style="">
+                <div class="btn btn-outline-success d-flex flex-column p-0" type="button" style="
+                    height: 110px;
+                    min-width: 150px;
+                    max-width: 200px;
+                    margin: auto;
+                    border-radius: 12px !important;
+                  ">
+                  <div class="contact-header d-flex flex-row justify-content-center w-100 mb-0">
+                    <i class="bx bxl-whatsapp me-2 ms-2 align-middle fs-1"></i>
+                  </div>
+                  <div class="contact-body my-1" style="">
+                    <span class="" style="font-size: 11px">Whatsapp</span>
+                  </div>
+                </div>
+              </a>
+              <a href="https://join.skype.com/invite/YgC6pwCdRSKL" target="_blank" class="text-decoration-none"
+                style="">
+                <div class="btn btn-outline-info d-flex flex-column p-0" type="button" style="
+                    height: 110px;
+                    min-width: 150px;
+                    max-width: 200px;
+                    margin: auto;
+                    border-radius: 12px !important;
+                  ">
+                  <div class="contact-header d-flex flex-row justify-content-center w-100 mb-0">
+                    <i class="bx bxl-skype me-2 ms-2 align-middle fs-1"></i>
+                  </div>
+                  <div class="contact-body my-1" style="">
+                    <span class="" style="font-size: 11px">Skype</span>
+                  </div>
+                  <div class="contact-footer"></div>
+                </div>
+              </a>
+              <!-- End -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <myfooter></myfooter>
+  </div>
+  <script src="js/vue.js"></script>
+  <script src="js/httpvueloaders.js"></script>
+  <script src="libs/jquery/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap/popper.min.js"></script>
+  <script src="libs/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="libs/swiper/swiper-bundle.min.js"></script>
+  <script src="libs/flatpickr/flatpickr.js"></script>
+  <script src="libs/flatpickr/vn.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      components: {
+        myheader: httpVueLoader('vue_components/header.vue'),
+        myfooter: httpVueLoader('vue_components/footer.vue'),
+      },
+      data() {
+        return {
+        }
+      },
+      mounted() {
+        $(window).bind('load', function () {
+          new WOW().init();
+
+          var swiper = new Swiper(".mySwiper", {
+            // Default parameters
+
+            loop: true,
+            speed: 3500,
+            autoplay: {
+              delay: 1,
+              disableOnInteraction: false,
+            },
+            // Responsive breakpoints
+            breakpoints: {
+              // when window width is >= 320px
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 150,
+              },
+              // when window width is >= 480px
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+              // when window width is >= 640px
+              1200: {
+                slidesPerView: 6,
+                spaceBetween: 0,
+              }
+            }
+          });
+
+          var swiper2 = new Swiper(".mySwiper2", {
+            // Default parameters
+            spaceBetween: 0,
+            centeredSlides: true,
+            speed: 3500,
+            autoplay: {
+              delay: 1,
+            },
+            loop: true,
+            allowTouchMove: false,
+            disableOnInteraction: true,
+            // Responsive breakpoints
+            breakpoints: {
+              // when window width is >= 320px
+              320: {
+                slidesPerView: 2,
+              },
+              // when window width is >= 480px
+              768: {
+                slidesPerView: 4,
+              },
+              // when window width is >= 640px
+              1200: {
+                slidesPerView: 6,
+              }
+            }
+          });
+
+          $(".current-menu-item").click(function (e) {
+            e.preventDefault();
+            let datascroll = $(this).data('liscroll');
+            $('html, body').animate({
+              scrollTop: $("#" + datascroll).offset().top
+            }, 1000);
+          });
+
+          $('.elementor-tab-title').click(function () {
+            $('.elementor-tab-title').removeClass('elementor-active');
+            $('.elementor-tab-content').slideUp();
+
+            $(this).addClass('elementor-active');
+            $(this).siblings().slideToggle();
+          })
+
+          $(".elementor-item.has-submenu").hover(function () {
+            $(this).addClass('highlighted');
+            $('.elementor-nav-menu--dropdown').fadeIn()
+          }, function () {
+            // change to any color that was previously used.
+            $(this).removeClass('highlighted');
+
+          });
+
+          $('.elementor-nav-menu--dropdown').mouseenter(function () {
+            $('.elementor-nav-menu--dropdown').fadeIn()
+          })
+
+          $('.elementor-nav-menu--dropdown').mouseleave(function () {
+            $('.elementor-nav-menu--dropdown').fadeOut()
+          })
+
+          // if ($('.elementor-nav-menu--dropdown').is(event.target) && !$('.elementor-nav-menu--dropdown').has(event.target).length === 0) {
+          //     $('.elementor-nav-menu--dropdown').fadeOut()
+          //   }
+        });
+      },
+    });
+  </script>
+</body>
+
+</html>
